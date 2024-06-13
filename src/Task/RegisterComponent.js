@@ -17,10 +17,8 @@ export function UserRegisterComponent() {
     onSubmit: values => {
       console.log(values);
 
-     
       const user = { password: values.password, email: values.email };
       localStorage.setItem('user', JSON.stringify(user));
-      // Store user data in cookies for 7 days
       alert('User registered successfully!');
     }
   })
@@ -47,8 +45,11 @@ export function UserRegisterComponent() {
     return errors
   }
 
-  return (<div className="container-fluid  w-25 mt-4">
+  return (
+  <div className="container-fluid  w-25 mt-4">
+
     <div><h1 className="text-primary p-3">User Register</h1></div>
+    
     <form onSubmit={formik.handleSubmit}>
       <div className="mb-3 ">
         <label className="form-label">Email address</label>
@@ -59,7 +60,7 @@ export function UserRegisterComponent() {
         <label className="form-label">Password</label>
         <div className="d-flex">
           <input type={(show) ? "text" : "password"} name="password" onChange={formik.handleChange} value={formik.values.password} className="form-control" />
-          <span className=" btn btn-primary bi bi-eye" onClick={() => setShow(!show)} />
+          <span className= " btn btn-primary bi bi-eye" onClick={() => setShow(!show)} />
         </div>
 
         <h5 className="text-danger">{formik.errors.password}</h5>

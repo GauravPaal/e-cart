@@ -8,11 +8,6 @@ export function TodoComponent() {
   const [completedTasks, setCompletedTasks] = useState([]);
   const navigate = useNavigate();
 
-  function handleLogout() {
-    localStorage.removeItem('loggedIn');
-    navigate('/login');
-  }
-
   useEffect(() => {
     const loggedIn = localStorage.getItem('loggedIn');
     if (!loggedIn) {
@@ -21,6 +16,10 @@ export function TodoComponent() {
   }, [navigate]);
 
 
+  function handleLogout() {
+    localStorage.removeItem('loggedIn');
+    navigate('/login');
+  }
   function handleSubmitClick(event) {
     let item = event.target.todoItem.value.toUpperCase();
     let date = event.target.dueDate.value;
@@ -32,14 +31,13 @@ export function TodoComponent() {
     }
     event.preventDefault()
   }
-
   function handleDeleteTodo(index) {
-    setTodoList(todoList.filter((_, i) => i !== index));
-    setdate(dates.filter((_, i) => i !== index));
+    setTodoList(todoList.filter((v, i) => i !== index));
+    setdate(dates.filter((v, i) => i !== index));
 
   }
   function handleDoneButton(index) {
-    const completedTask = todoList[index];
+    const completedTask = console.log(todoList[index]);
     setCompletedTasks([...completedTasks, completedTask]);
     handleDeleteTodo(index);
   }

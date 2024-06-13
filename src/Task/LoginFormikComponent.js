@@ -48,16 +48,17 @@ export function LoginComponet() {
   }
 
 
-  return (<div className="container-fluid  w-25 mt-4">
+  return (
+  <div className="container-fluid  w-25 mt-4">
     <div><h1 className="text-primary p-3">User Login</h1></div>
     <form onSubmit={formik.handleSubmit}>
       <div className="mb-3 ">
-        <label for="exampleInputEmail1" className="form-label">Email address</label>
+        <label className="form-label">Email address</label>
         <input type="email" className="form-control" name="email" onChange={formik.handleChange} value={formik.values.email} />
         <h5 className="text-danger">{formik.errors.email}</h5>
       </div>
       <div className="mb-3">
-        <label for="exampleInputPassword1" className="form-label">Password</label>
+        <label  className="form-label">Password</label>
         <div className="d-flex">
           <input type={(show) ? 'text' : 'password'} className="form-control" name="password" onChange={formik.handleChange} value={formik.values.password} />
           <span className=" btn btn-primary bi bi-eye" onClick={() => { setShow(!show); }} />
