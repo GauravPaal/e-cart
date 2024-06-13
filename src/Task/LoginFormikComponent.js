@@ -1,12 +1,19 @@
 import { useFormik } from "formik";
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
-import { useCookies } from 'react-cookie';
+
 
 export function LoginComponet() {
   let [show, setShow] = useState(false);
-  const [cookies] = useCookies(['user']);
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem('loggedIn');
+    if (loggedIn) {
+      navigate('/todo');
+    }
+  }, [navigate]);
 
   const formik = useFormik({
     initialValues: {
@@ -15,20 +22,17 @@ export function LoginComponet() {
     },
     validate: varifyUserDetail,
     onSubmit: values => {
+      const storedUser = JSON.parse(localStorage.getItem('user'));
 
-      try {
-
-        if (cookies.user.email === values.email && cookies.user.password === values.password) {
-          alert('Login successful!');
-          navigate('/todo');
-        } else {
-          alert('Invalid username or password!');
-        }
-      } catch (error) {
-        alert('Error logging in: ' + error.message);
+      if (storedUser && storedUser.email === values.email && storedUser.password === values.password) {
+        localStorage.setItem('loggedIn', true);
+        alert('Login successful!');
+        navigate('/todo');
+      } else {
+        alert('Invalid username or password!');
       }
-    }
-  });
+
+  }});
   function varifyUserDetail(userDetail) {
     const errors = {};
 
@@ -56,7 +60,7 @@ export function LoginComponet() {
         <label for="exampleInputPassword1" className="form-label">Password</label>
         <div className="d-flex">
           <input type={(show) ? 'text' : 'password'} className="form-control" name="password" onChange={formik.handleChange} value={formik.values.password} />
-          <button className=" btn btn-primary bi bi-eye" onClick={() => { setShow(!show); }} />
+          <span className=" btn btn-primary bi bi-eye" onClick={() => { setShow(!show); }} />
         </div>
         <h5 className="text-danger">{formik.errors.email}</h5>
       </div>

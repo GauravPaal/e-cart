@@ -1,11 +1,24 @@
-import { useState } from 'react';
-
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export function TodoComponent() {
 
   const [todoList, setTodoList] = useState([]);
   const [dates, setdate] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    localStorage.removeItem('loggedIn');
+    navigate('/login');
+  }
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem('loggedIn');
+    if (!loggedIn) {
+      navigate('/login');
+    }
+  }, [navigate]);
 
 
   function handleSubmitClick(event) {
@@ -33,8 +46,9 @@ export function TodoComponent() {
 
   return (
     <div className='container-fluid '>
-      <div>
+      <div className='d-flex justify-content-between'>
         <h1 className='text-danger '>To do List</h1>
+        <button className="btn btn-primary" onClick={handleLogout}>Logout</button>
       </div>
       <div>
         <form className='center' onSubmit={handleSubmitClick}>
@@ -57,7 +71,7 @@ export function TodoComponent() {
                     {todoList.map((value, index) => (
                       <li key={index}>
                         <h3 className='mt-2'>{value}</h3>
-                        
+
                       </li>
                     ))}
                   </div>
@@ -66,7 +80,7 @@ export function TodoComponent() {
                       <li key={index}>
                         {value}
                         <div className='btn btn-group'><button className=' btn btn-danger ' onClick={() => handleDeleteTodo(index)}>Delete</button>
-                        <button className="btn btn-primary " onClick={() => handleDoneButton(index)}>Done</button></div>
+                          <button className="btn btn-primary " onClick={() => handleDoneButton(index)}>Done</button></div>
                       </li>
                     ))}
                   </div>

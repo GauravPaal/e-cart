@@ -1,11 +1,10 @@
 import { useFormik } from "formik";
 import { useState } from "react";
-import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
 
 export function UserRegisterComponent() {
   let [show, setShow] = useState(false);
-  const [cookies, setCookie] = useCookies(["user"]);
+ 
 
   const formik = useFormik({
     initialValues: {
@@ -18,11 +17,9 @@ export function UserRegisterComponent() {
     onSubmit: values => {
       console.log(values);
 
-      // const user = { email: values.email, password: values.password };
-      // setCookie("user",JSON.stringify(user),{path:"/" ,expires: new Date("2024-06-8 12:00")});
-      // alert("Registeration Successfull !!")
+     
       const user = { password: values.password, email: values.email };
-      setCookie('user', JSON.stringify(user), { path: '/', maxAge: 604800 });
+      localStorage.setItem('user', JSON.stringify(user));
       // Store user data in cookies for 7 days
       alert('User registered successfully!');
     }
@@ -62,7 +59,7 @@ export function UserRegisterComponent() {
         <label className="form-label">Password</label>
         <div className="d-flex">
           <input type={(show) ? "text" : "password"} name="password" onChange={formik.handleChange} value={formik.values.password} className="form-control" />
-          <button className=" btn btn-primary bi bi-eye" onClick={() => setShow(!show)} />
+          <span className=" btn btn-primary bi bi-eye" onClick={() => setShow(!show)} />
         </div>
 
         <h5 className="text-danger">{formik.errors.password}</h5>
@@ -71,7 +68,7 @@ export function UserRegisterComponent() {
         <label className="form-label">Confirm Password</label>
         <div className="d-flex">
           <input type={(show) ? "text" : "password"} name="confirmPassword" onChange={formik.handleChange} className="form-control" />
-          <button className=" btn btn-primary bi bi-eye" onClick={() => setShow(!show)} />
+          <span className=" btn btn-primary bi bi-eye" onClick={() => setShow(!show)} />
         </div>
         <h5 className="text-danger"  >{formik.errors.confirmPassword}</h5>
       </div>
