@@ -1,13 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { UserRegisterComponent } from './Task/RegisterComponent';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { LoginComponet } from './Task/LoginFormikComponent';
+import { CookiesProvider } from 'react-cookie';
+import { TodoComponent } from './Task/TodoComponent';
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+let allroutes=createBrowserRouter([{
+  path:'/',
+  element:<UserRegisterComponent/>
+},
+  {
+    path:'login',
+    element:<LoginComponet/>
+
+  },
+  {
+    path: 'todo',
+    element: <TodoComponent />,
+  }
+
+])
+
+
 root.render(
   <React.StrictMode>
-    <App />
+    <CookiesProvider>
+    <RouterProvider router={allroutes}/>
+    </CookiesProvider>
   </React.StrictMode>
 );
 

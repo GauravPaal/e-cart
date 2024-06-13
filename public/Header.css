@@ -1,0 +1,24 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: #b0c6ce;
+   }
+.header{
+    width: 90%;
+    height: 4rem;
+    margin-left: 5%;
+    background-color: #938ba1;
+    ul{ padding:1rem; 
+            display: flex;
+            align-items:center;
+            gap: 2.5rem;
+    }
+}
+li{
+list-style: none;
+color:#a9fbd7;
+
+}
+.push-right{
+margin-right: auto;
+}

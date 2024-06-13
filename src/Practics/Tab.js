@@ -1,0 +1,8 @@
+export  let Tab=[
+    {'Title':'Vision',
+    'description':'Our online LAW training Programs find it easy to reach every aspirant. In addition, we have individual online training programs for students of different classes. We have it for the 11th standard, 12th standard, and Repeaters. Additional customised training programmes are available under each of these courses to give into the specific needs of the CLAT aspirants. All Abhyaas LAW PREP (ALP) CLAT Online Coaching programs are well designed to help aspirants prepare. They can confidently crack the CLAT, AILET, SLAT, LSAT, MHCET, AP&TS-Lawcet, and Other Major Law Entrance Exams in India.'},
+    {'Title':'Mision',
+    'description':'Abhyaas Law Prep has been bagging the Times Education ICON Award for CLAT Entrance. It has been possible due to our relentless efforts in mentoring students. This approach resulted in students’ outstanding performance in the CLAT exam The CLAT online coaching format of Abhyaas LawPrep provides flexibility and convenience to students, allowing them to study at their own pace and from any location with an internet connection. The platform may also offer doubt-solving sessions, online discussion forums, and performance-tracking tools to help students monitor their progress and identify areas for improvement.'},
+    {'Title':'Why Law ?',
+    'description':'Many leaders who learned Law have led the world. All are law students, from Mahatma Gandhi and Nelson Mandela to Barack Obama. As a promising, Legal Studies enlarges your knowledge. It prepares you to be analytical, rational, convincing and inquisitive. It teaches you to ask the right questions at the right time.'}
+]
